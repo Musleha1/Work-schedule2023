@@ -1,9 +1,32 @@
-//Display current date
+//Display today's date
 
 var today = moment();
 $("#currentDay").text(today.format("Do MMMM YYYY"));
 
-//Time blocks for div container
+
+//Colour coded time blocks
+
+function timeBlockColour() {
+    var currentHour = moment().hour();
+
+ $(".time-block").each(function() {
+    var blockTime = parseInt($(this).attr("id"));
+
+    
+
+    if (blockTime > currentHour) {
+        $(this).addClass("future"); //green
+     } else if (blockTime === currentHour) {
+            $(this).addClass("present"); //red
+     }else {
+                $(this).addClass("past"); //light grey
+            }
+    })
+};
+
+
+
+
 
 
 
