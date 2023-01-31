@@ -33,7 +33,7 @@ var saveBtn = $("saveBtn");
 $("saveBtn").click(function(event) {
     event.preventDefault();
 
-// Local storage
+// Save the event in local storage when the save button is clicked in that timeblock
 
     var time = $(this).siblings(".hour").text();
     var description = $(this).siblings(".description").val();
@@ -41,6 +41,23 @@ $("saveBtn").click(function(event) {
     localStorage.setItem(time, description);
 }
 )
+
+//Persist events between refreshes of a page
+
+function workScheduler() {
+
+    $(".hour").each(function() {
+        var blockTime = $(this).text();
+        var currentEvent = localStorage.getItem(blockTime);
+        if(currentEvent !== null) {
+            $(this).siblings(".description").val(currentEvent);
+        }
+
+    })
+}
+
+workScheduler();
+
 
 
 
